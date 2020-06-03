@@ -56,12 +56,12 @@ public class AddCommitBL extends HttpServlet {
 		}
 
 //		TELのハイフンを抜く、正規表現の置換
-		tel.replaceAll("-", "");
+		String tel1 = tel.replaceAll("-", "");
 
 //		requestセットしてINSERT
 		request.setAttribute("name", name);
 		request.setAttribute("address", address);
-		request.setAttribute("tel", tel);
+		request.setAttribute("tel1", tel1);
 		request.setAttribute("categoryid", categoryid);
 
 
@@ -84,7 +84,7 @@ public class AddCommitBL extends HttpServlet {
 				PreparedStatement ps = connect.prepareStatement(InsQuery);
 				ps.setString(1, name);
 				ps.setString(2, address);
-				ps.setString(3, tel);
+				ps.setString(3, tel1);
 				ps.setString(4, categoryid);
 				int num = ps.executeUpdate();
 			}
@@ -93,7 +93,7 @@ public class AddCommitBL extends HttpServlet {
 			}catch (ClassNotFoundException e) {
 				System.out.println("ドライバを読み込めませんでした" + e);
 			}
-
+			getServletContext().getRequestDispatcher("/ListBL").forward(request, response);
 	}
 
 	/**

@@ -54,9 +54,8 @@ public class ListBL extends HttpServlet {
 //	    String nowPage = "";
 	    String SerchName = null;
 
-//	    String Page = request.getParameter("Page");
-	    String Page = "1";
-	    if (Page == "1") {
+	    String Page = request.getParameter("Page");
+	    if (Page == null) {
 	    	nowPage = "1";
 	    }else {
 	    	nowPage = Page;
@@ -100,10 +99,10 @@ public class ListBL extends HttpServlet {
 		    connect = DriverManager.getConnection(url, user, password);
 			System.out.println("Connected....");
 
-			SelectQuery = "SELECT jyusyoroku.id, jyusyoroku.name, jyusyoroku.address, jyusyoroku.tel, jyusyoroku.categoryname FROM jyusyoroku JOIN category ON jyusyoroku.categoryid = category.categoryid WHERE jyusyoroku.delete_flg = '0' LIMIT 10 OFFSET ?";
+			SelectQuery = "SELECT id, name, address, tel, categoryname FROM jyusyoroku JOIN category ON jyusyoroku.categoryid = category.categoryid WHERE delete_flg = '0' LIMIT 10 OFFSET ?";
 			PreparedStatement ps = connect.prepareStatement(SelectQuery);
 			ps.setInt(1, limitSta);
-			rs = stmt.executeQuery(SelectQuery);
+			rs = ps.executeQuery();
 
 			}catch(SQLException  e) {
 				System.out.println("Connection SelectQuery失敗SelectQuery.null.ver : " + e.toString());
@@ -112,28 +111,28 @@ public class ListBL extends HttpServlet {
 			}
 		}else {
 			request.setAttribute("SerchName", Serchname);
-//			try {
-//			Class.forName("com.mysql.cj.jdbc.Driver");
-//			connect = DriverManager.getConnection(url, user, password);
-//			System.out.println("Connected....");
-//			SelectQuery = "SELECT id, name, address, tel, categoryname FROM jyusyoroku JOIN category "
-//					+ "ON jyusyoroku.categoryid = category.categoryid WHERE delete_flg = '0' AND address LIKE ? LIMIT ?, 10";
-//			PreparedStatement ps = connect.prepareStatement(SelectQuery);
-//			ps.setString(1, Serchname + "%");
-//			ps.setInt(2, limitSta);
-//			rs = stmt.executeQuery(SelectQuery);
-//
-//			request.setAttribute("listCnt", listCnt);
-//			request.setAttribute("ResultSet", rs);
-//			request.setAttribute("nowPage", Page);
-//			getServletContext().getRequestDispatcher("/List.jsp").forward(request, response);
-//
-//			}catch(SQLException e) {
-//			 System.out.println("Connection SelectQuery失敗noNull.ver : " + e.toString());
-//		  }catch (ClassNotFoundException e) {
-//				System.out.println("ドライバを読み込めませんでした" + e);
-//			}
+			try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			connect = DriverManager.getConnection(url, user, password);
+			System.out.println("Connected....");
+			SelectQuery = "SELECT id, name, address, tel, categoryname FROM jyusyoroku JOIN category "
+					+ "ON jyusyoroku.categoryid = category.categoryid WHERE delete_flg = '0' AND address LIKE ? LIMIT ?, 10";
+			PreparedStatement ps = connect.prepareStatement(SelectQuery);
+			ps.setString(1, Serchname + "%");
+			ps.setInt(2, limitSta);
+			rs = ps.executeQuery();
+
+			}catch(SQLException e) {
+			 System.out.println("Connection SelectQuery失敗noNull.ver : " + e.toString());
+		  }catch (ClassNotFoundException e) {
+				System.out.println("ドライバを読み込めませんでした" + e);
+			}
 		}
+
+		request.setAttribute("listCnt", listCnt);
+		request.setAttribute("Result", rs);
+		request.setAttribute("nowPage", Page);
+		getServletContext().getRequestDispatcher("/List.jsp").forward(request, response);
 
 		}
 		//下の一文、いるのか保留

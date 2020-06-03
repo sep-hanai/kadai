@@ -10,19 +10,22 @@
 <h4>住所録管理システム：住所録編集</h4>
 
 <!-- ここからフォーム画面 -->
+<% String name = request.getParameter("name");
+String address = request.getParameter("address");
+String tel = request.getParameter("tel");
+String categoryid = request.getParameter("category");%>
 <form>
  <ul>
   <li style="list-style: none;">
-   <label for="1">名前＊：</label><input type="text" name="name" id="1"></li>
+   <label for="1">名前＊：</label><input type="text" name="name" id="1" value="<%=name%>"></li>
   <li style="list-style: none;">
-   <label for="2">住所＊：</label><input style="width:300px;" type="text" name="address" id="2"></li>
+   <label for="2">住所＊：</label><input style="width:300px;" type="text" name="address" id="2" value="<%=address%>"></li>
   <li style="list-style: none;">
-   <label for="3">電話番号：</label><input type="text" name="tel" id="3"></li>
+   <label for="3">電話番号：</label><input type="text" name="tel" id="3"value="<%=tel%>"></li>
   <li style="list-style: none;">
    <label for="4">カテゴリ：</label><select name="category" id="4">
  <!-- ドロップダウン -->
  <!-- jspからDBに接続 -->
-<%  %>
    <option value=""></option>
    </select></li>
   <li style="list-style: none; display: inline-block;"><input type="submit" name="send" value="確認" style="width:100px;height:25px"></li>
