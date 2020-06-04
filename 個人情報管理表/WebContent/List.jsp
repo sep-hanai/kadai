@@ -69,7 +69,6 @@
 </ul>
 -->
 
-<form>
 <!-- DB受け取り -->
 <% String nowPage = (String)request.getAttribute("Page");
 int listCnt = (int)request.getAttribute("listCnt");
@@ -90,14 +89,16 @@ ResultSet rs = (ResultSet)request.getAttribute("Result");%>
    <th style="width:15%">カテゴリ</th>
    <th colspan="2" style="width:15%">&nbsp;</th>
   </tr>
-<% while(rs.next()){
+<% while(rs.next()){%>
+
+  <%
 	String id = rs.getString("id");
 	String name = rs.getString("name");
 	String address = rs.getString("address");
 	String tel = rs.getString("tel");
 	String category = rs.getString("categoryname");
 	//String delete_flg = rs.getString("delete_flg");%>
-
+<Form name=<%=id%>>
   <tr align="center">
    <td><% out.println(id);%></td>
    <td><% out.println(name);%></td>
@@ -109,10 +110,14 @@ ResultSet rs = (ResultSet)request.getAttribute("Result");%>
    <td><input formaction="http://localhost:8080/個人情報管理表/Delete.jsp" name="delete" style=" width:100%; background-color: #87cefa; maxlength=100; outline: 0; border: 0px;" type="submit" value="削除"></td>
   </tr>
   <input type="hidden" name="name" value="<%=name%>">
+  <input type="hidden" name="address" value="<%=address%>">
+  <input type="hidden" name="tel" value="<%=tel%>">
+  <input type="hidden" name="category" value="<%=category%>">
+  </form>
 <%}%>
 
 </table>
-</form>
+
 <!-- ページ選択 -->
 <!--
 <ul class="{Oiter Element Class}">
