@@ -96,8 +96,11 @@ ResultSet rs = (ResultSet)request.getAttribute("Result");%>
 	String name = rs.getString("name");
 	String address = rs.getString("address");
 	String tel = rs.getString("tel");
-	String category = rs.getString("categoryname");
-	//String delete_flg = rs.getString("delete_flg");%>
+	String category = rs.getString("categoryname");%>
+
+<%//  telをハイフン入りに置換%>
+
+
 <Form name=<%=id%>>
   <tr align="center">
    <td><% out.println(id);%></td>
