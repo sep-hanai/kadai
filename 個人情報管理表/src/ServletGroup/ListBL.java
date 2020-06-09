@@ -66,7 +66,7 @@ public class ListBL extends HttpServlet {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connect = DriverManager.getConnection(url, user, password);
-			System.out.println("Connected....");
+			System.out.println("ListBL1.Connected....");
 
 			stmt= connect.createStatement();
 			CntQuery = "SELECT COUNT(*) FROM jyusyoroku";
@@ -97,7 +97,7 @@ public class ListBL extends HttpServlet {
 		   try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		    connect = DriverManager.getConnection(url, user, password);
-			System.out.println("Connected....");
+			System.out.println("ListBL2.Connected....");
 
 			SelectQuery = "SELECT id, name, address, tel, categoryname FROM jyusyoroku JOIN category ON jyusyoroku.categoryid = category.categoryid WHERE delete_flg = '0' LIMIT 10 OFFSET ?";
 			PreparedStatement ps = connect.prepareStatement(SelectQuery);
@@ -114,7 +114,8 @@ public class ListBL extends HttpServlet {
 			try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connect = DriverManager.getConnection(url, user, password);
-			System.out.println("Connected....");
+			System.out.println("ListBL2else.Connected....");
+
 			SelectQuery = "SELECT id, name, address, tel, categoryname FROM jyusyoroku JOIN category "
 					+ "ON jyusyoroku.categoryid = category.categoryid WHERE delete_flg = '0' AND address LIKE ? LIMIT ?, 10";
 			PreparedStatement ps = connect.prepareStatement(SelectQuery);
@@ -128,7 +129,6 @@ public class ListBL extends HttpServlet {
 				System.out.println("ドライバを読み込めませんでした" + e);
 			}
 		}
-
 		request.setAttribute("listCnt", listCnt);
 		request.setAttribute("Result", rs);
 		request.setAttribute("nowPage", Page);
