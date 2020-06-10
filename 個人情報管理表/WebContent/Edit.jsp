@@ -17,7 +17,7 @@
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
 		String tel = request.getParameter("tel");
-		String category = request.getParameter("category");
+		String categoryname = request.getParameter("categoryname");
 		String errmsg = request.getParameter("errmsg");
 	%>
 
@@ -32,11 +32,11 @@
 			<li style="list-style: none;"><label for="3">電話番号：</label><input
 				type="text" name="tel" id="3" value="<%=tel%>"></li>
 			<li style="list-style: none;"><label for="4">カテゴリ：</label><select
-				name="category" id="4">
+				name="categoryid" id="4">
 
 					<!-- ドロップダウン -->
 					<!-- 初期値 -->
-					<option selected><%=category%></option>
+					<option selected><%=categoryname%></option>
 
 					<!-- CommonのgetCategoryAllを呼び出す -->
 					<%
@@ -44,12 +44,12 @@
 						ResultSet rs = cmn.getCategoryAll();
 						while (rs.next()) {
 							String categoryid = rs.getString("categoryid");
-							String categoryname = rs.getString("categoryname");
+							String categoryname2 = rs.getString("categoryname");
 							//System.out.println(categoryid + categoryname);
 					%>
 					<option value="<%=categoryid%>">
 						<%
-							out.println(categoryid + categoryname);
+							out.println(categoryid + categoryname2);
 						%>
 					</option>
 					<%

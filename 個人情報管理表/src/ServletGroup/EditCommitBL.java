@@ -43,28 +43,19 @@ public class EditCommitBL extends HttpServlet {
 		String address = request.getParameter("address");
 		String tel = request.getParameter("tel");
 		String categoryid = request.getParameter("categoryid");
-		        System.out.println(id);
-
+		System.out.println(id);
 
 		//		TELのハイフンを抜く、正規表現の置換
 		String tel1 = tel.replaceAll("-", "");
 
-		//		requestセットしてINSERT
-		request.setAttribute("id", id);
-		request.setAttribute("name", name);
-		request.setAttribute("address", address);
-		request.setAttribute("tel1", tel1);
-		request.setAttribute("categoryid", categoryid);
-
 		String servername = "localhost";
-		String databasename = "住所録";
+		String databasename = "hanai";
 		String user = "root";
 		String password = "";
 		String serverencoding = "UTF-8";
-		String url = "jdbc:mysql://localhost:3306/住所録?characterEncoding=UTF-8&serverTimezone=JST";
+		String url = "jdbc:mysql://localhost:3306/hanai?characterEncoding=UTF-8&serverTimezone=JST";
 		Connection connect = null;
 		ResultSet result = null;
-		//	    String categoryid = null;
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -79,7 +70,7 @@ public class EditCommitBL extends HttpServlet {
 			ps.setString(4, categoryid);
 			ps.setString(5, id);
 			int num = ps.executeUpdate();
-			connect.commit();
+//			connect.commit();
 		} catch (SQLException e) {
 			System.out.println("Connection Failed.UPDATE失敗 : " + e.toString());
 		} catch (ClassNotFoundException e) {
@@ -87,8 +78,6 @@ public class EditCommitBL extends HttpServlet {
 		}
 		getServletContext().getRequestDispatcher("/ListBL").forward(request, response);
 	}
-
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

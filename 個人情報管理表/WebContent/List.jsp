@@ -102,11 +102,10 @@
 		</tr>
 		<%
 			while (rs.next()) {
-
 				String id = rs.getString("id");
 				String name = rs.getString("name");
 				String address = rs.getString("address");
-				String category = rs.getString("categoryname");
+				String categoryname = rs.getString("categoryname");
 				//ハイフン
 				String tel1 = rs.getString("tel");
 				//CommonからgetCategorynameを呼び出し
@@ -139,7 +138,7 @@
 				</td>
 				<td>
 					<%
-						out.println(category);
+						out.println(categoryname);
 					%>
 				</td>
 				<!-- POSTする -->
@@ -156,7 +155,7 @@
 				type="hidden" name="name" value="<%=name%>"> <input
 				type="hidden" name="address" value="<%=address%>"> <input
 				type="hidden" name="tel" value="<%=tel%>"> <input
-				type="hidden" name="category" value="<%=category%>">
+				type="hidden" name="categoryname" value="<%=categoryname%>">
 		</form>
 		<%
 			}

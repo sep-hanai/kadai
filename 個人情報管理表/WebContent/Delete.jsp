@@ -22,7 +22,7 @@
 		電話番号：<%
 		out.println(request.getParameter("tel"));
 	%><br> カテゴリ：<%
-		out.println(request.getParameter("category"));
+		out.println(request.getParameter("categoryname"));
 	%>
 	</p>
 

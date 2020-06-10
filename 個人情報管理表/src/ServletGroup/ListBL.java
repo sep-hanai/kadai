@@ -43,7 +43,6 @@ public class ListBL extends HttpServlet {
 		String password = "";
 		String serverencoding = "UTF-8";
 		String url = "jdbc:mysql://localhost:3306/住所録?characterEncoding=UTF-8&serverTimezone=JST";
-
 		//変数の宣言
 		Connection connect=null;
 		Statement stmt=null;
