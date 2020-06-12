@@ -54,6 +54,7 @@ public class ListBL extends HttpServlet {
 	    String SerchName = null;
 
 	    String Page = request.getParameter("Page");
+	    System.out.println(Page);
 	    if (Page == null) {
 	    	nowPage = "1";
 	    }else {

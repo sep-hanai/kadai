@@ -13,6 +13,15 @@
 </head>
 
 <body>
+	<%
+		String nowPage = (String) request.getAttribute("nowPage");
+		int listCnt = (int) request.getAttribute("listCnt");
+		int maxPage = (listCnt / 10);
+		if (listCnt % 10 != 0) {
+			maxPage++;
+		}
+		ResultSet rs = (ResultSet) request.getAttribute("Result");
+	%>
 
 	<h4>住所録管理システム：住所録一覧</h4>
 
@@ -43,50 +52,50 @@
 	</form>
 
 	<!-- ページ選択 -->
-	<!--
-<ul>
- <li>
-  <a href="#"><<</a>
+	<!-- <ul>
+ <li style="display:inline;">
+  <a href="#">&lt;&lt;</a>
  </li>
- <li>
-  <a href="#"><</a>
+ <li style="display:inline;">
+  <a href="#">&lt;</a>
  </li>
- <li>
+ <li style="display:inline;">
   <a href="?page -0&size6">1</a>
  </li>
- <li>
+ <li style="display:inline;">
   <a href="?page=1&size6">2</a>
  </li>
-  <li>
+  <li style="display:inline;">
   <a href="?page=2&size6">3</a>
  </li>
- <li>
+ <li style="display:inline;">
   <a href="?page=3&size6">4</a>
  </li>
-  <li>
+  <li style="display:inline;">
   <a href="?page=4&size6">5</a>
  </li>
-  <li>
-  <a href="?page=5&size6">6</a>
+ <li style="display:inline;">
+  <a href="#">&gt;</a>
  </li>
-  <li>
-  <a href="?page=6&size6">7</a>
+ <li style="display:inline;">
+  <a href="#">&gt;&gt;</a>
  </li>
+</ul>-->
+	<!-- ページネーション -->
+	<ul>
+		<li style="display: inline;"><a href="#">&lt;&lt;</a></li>
+		<li style="display: inline;"><a href="#">&lt;</a></li>
+		<%
 
-</ul>
--->
-
-
-	<!-- DB受け取り -->
-	<%
-		String nowPage = (String) request.getAttribute("Page");
-		int listCnt = (int) request.getAttribute("listCnt");
-		int maxPage = (listCnt / 10);
-		if (listCnt % 10 != 0) {
-			maxPage++;
-		}
-		ResultSet rs = (ResultSet) request.getAttribute("Result");
-	%>
+			//maxPageまでPageにナンバリング
+					for (int Page = 1; Page <= maxPage; Page++) {
+		%>
+		<li style="display: inline;"><a href="ListBL?Page=<%=Page%>"><%=Page%></a></li>
+		<%
+					}
+		%><li style="display: inline;"><a href="#">&gt;</a></li>
+		<li style="display: inline;"><a href="#">&gt;&gt;</a></li>
+	</ul>
 
 	<!-- DB表示 -->
 	<table border="1"
@@ -163,37 +172,6 @@
 
 	</table>
 
-	<!-- ページ選択 -->
-	<!--
-<ul class="{Oiter Element Class}">
- <li class="disabled">
-  <a href="#"><<</a>
- </li>
- <li class="disabled">
-  <a href="#"></a>
- </li>
- <li class="active">
-  <a href="?page -0&size6">1</a>
- </li>
- <li>
-  <a href="?page=1&size6">2</a>
- </li>
-  <li>
-  <a href="?page=2&size6">3</a>
- </li>
- <li>
-  <a href="?page=3&size6">4</a>
- </li>
-  <li>
-  <a href="?page=4&size6">5</a>
- </li>
-  <li>
-  <a href="?page=5&size6">6</a>
- </li>
-  <li>
-  <a href="?page=6&size6">7</a>
- </li>
-</ul>-->
 
 	<!-- 新規登録 -->
 	<form method="POST" action="/個人情報管理表/Add.jsp">

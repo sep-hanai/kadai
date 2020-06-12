@@ -37,11 +37,11 @@ public class DeleteCommitBL extends HttpServlet {
 //		System.out.println(id);
 
 		String servername = "localhost";
-		String databasename = "hanai";
+		String databasename = "住所録";
 		String user = "root";
 		String password = "";
 		String serverencoding = "UTF-8";
-		String url = "jdbc:mysql://localhost:3306/hanai?characterEncoding=UTF-8&serverTimezone=JST";
+		String url = "jdbc:mysql://localhost:3306/住所録?characterEncoding=UTF-8&serverTimezone=JST";
 		Connection connect = null;
 
 		//	    String categoryid = null;
