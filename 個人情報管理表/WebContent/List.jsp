@@ -81,21 +81,64 @@
   <a href="#">&gt;&gt;</a>
  </li>
 </ul>-->
-	<!-- ページネーション -->
+	<!-- ページネーションのメソッド -->
+	<% String paging(String nowPage, int maxPage){ %>
 	<ul>
-		<li style="display: inline;"><a href="#">&lt;&lt;</a></li>
-		<li style="display: inline;"><a href="#">&lt;</a></li>
 		<%
+			//nowPageをint型に置換
+			int centerPage = (Integer.parseInt(nowPage));
+			//最初のページ、一つ前のページへ
+			if (centerPage == 1) {
+		%>
+		<li style="display: inline;">&lt;&lt;</li>
+		<li style="display: inline;">&lt;</li>
+		<%
+			} else {
+		%>
+		<li style="display: inline;"><a href="http://localhost:8080/個人情報管理表/ListBL?Page=1">&lt;&lt;</a></li>
+		<li style="display: inline;"><a href="ListBL?Page=<%=centerPage - 1%>">&lt;</a></li>
+		<%
+			}
+		%>
 
-			//maxPageまでPageにナンバリング
-					for (int Page = 1; Page <= maxPage; Page++) {
+		<%
+			//nowPageが3以下の場合、1-5を表示
+			if (centerPage <= 3) {
+				for (int Page = 1; Page <= 5; Page++) {
 		%>
 		<li style="display: inline;"><a href="ListBL?Page=<%=Page%>"><%=Page%></a></li>
 		<%
-					}
-		%><li style="display: inline;"><a href="#">&gt;</a></li>
-		<li style="display: inline;"><a href="#">&gt;&gt;</a></li>
+			}
+				//nowPageがmaxPage-2より大きい場合、maxPage-4を表示
+			} else if (centerPage > (maxPage - 2)) {
+				for (int Page = (maxPage - 4); Page <= maxPage; Page++) {
+		%>
+		<li style="display: inline;"><a href="ListBL?Page=<%=Page%>"><%=Page%></a></li>
+		<%
+			}
+				//それ以外の場合、nowPageを中心に+-2ページを表示
+			} else {
+				for (int Page = (centerPage - 2); Page <= (centerPage + 2); Page++) {
+		%>
+		<li style="display: inline;"><a href="ListBL?Page=<%=Page%>"><%=Page%></a></li>
+		<%
+			}
+			}
+			//最後のページ、最後から一つ前のページへ
+			if (centerPage == maxPage) {
+		%>
+		<li style="display: inline;">&gt;</li>
+		<li style="display: inline;">&gt;&gt;</li>
+		<%
+			} else {
+		%>
+		<li style="display: inline;"><a href="ListBL?Page=<%=centerPage + 1%>">&gt;</a></li>
+		<li style="display: inline;"><a href="http://localhost:8080/個人情報管理表/ListBL?Page=<%=maxPage%>">&gt;&gt;</a></li>
+		<%
+			}
+		%>
 	</ul>
+	<% return %>
 
 	<!-- DB表示 -->
 	<table border="1"
