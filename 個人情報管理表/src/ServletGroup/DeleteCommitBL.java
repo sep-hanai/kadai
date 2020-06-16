@@ -19,29 +19,30 @@ import javax.servlet.http.HttpServletResponse;
 public class DeleteCommitBL extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeleteCommitBL() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public DeleteCommitBL() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String id = request.getParameter("id");
-//		System.out.println(id);
+		//		System.out.println(id);
 
 		String servername = "localhost";
-		String databasename = "住所録";
+		String databasename = "hanai";
 		String user = "root";
 		String password = "";
 		String serverencoding = "UTF-8";
-		String url = "jdbc:mysql://localhost:3306/住所録?characterEncoding=UTF-8&serverTimezone=JST";
+		String url = "jdbc:mysql://localhost:3306/hanai?characterEncoding=UTF-8&serverTimezone=JST";
 		Connection connect = null;
 
 		//	    String categoryid = null;
@@ -64,11 +65,11 @@ public class DeleteCommitBL extends HttpServlet {
 		getServletContext().getRequestDispatcher("/ListBL").forward(request, response);
 	}
 
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

@@ -18,8 +18,7 @@
 		out.println(request.getParameter("name"));
 	%><br> 住所：<%
 		out.println(request.getParameter("address"));
-	%><br>
-		電話番号：<%
+	%><br> 電話番号：<%
 		out.println(request.getParameter("tel"));
 	%><br> カテゴリ：<%
 		out.println(request.getParameter("categoryname"));

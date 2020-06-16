@@ -70,7 +70,7 @@ public class EditCommitBL extends HttpServlet {
 			ps.setString(4, categoryid);
 			ps.setString(5, id);
 			int num = ps.executeUpdate();
-//			connect.commit();
+			//			connect.commit();
 		} catch (SQLException e) {
 			System.out.println("Connection Failed.UPDATE失敗 : " + e.toString());
 		} catch (ClassNotFoundException e) {

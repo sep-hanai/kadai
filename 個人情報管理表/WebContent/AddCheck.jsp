@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ page import = "java.sql.ResultSet" %>
+	pageEncoding="UTF-8"%>
+<%@ page import="java.sql.ResultSet"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,28 +8,48 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h4>住所録管理システム：住所録登録</h4>
-<!-- ここからフォーム画面 -->
-<form method = "POST">
+	<h4>住所録管理システム：住所録登録</h4>
+	<!-- ここからフォーム画面 -->
+	<form method="POST">
 
-<!-- AddBLから受け取り -->
-<% String name = (String)request.getAttribute("name"); %>
-<% String address = (String)request.getAttribute("address"); %>
-<% String tel = (String)request.getAttribute("tel"); %>
-<% String categoryid = (String)request.getAttribute("categoryid"); %>
+		<!-- AddBLから受け取り -->
+		<%
+			String name = (String) request.getAttribute("name");
+		%>
+		<%
+			String address = (String) request.getAttribute("address");
+		%>
+		<%
+			String tel = (String) request.getAttribute("tel");
+		%>
+		<%
+			String categoryid = (String) request.getAttribute("categoryid");
+		%>
 
-<p>名前：<%out.println(name); %><br>
-住所：<%out.println(address); %><br>
-電話番号：<%out.println(tel); %><br></p>
+		<p>
+			名前：<%
+			out.println(name);
+		%><br> 住所：<%
+			out.println(address);
+		%><br>
+			電話番号：<%
+			out.println(tel);
+		%><br>
+		</p>
 
-<input type="hidden" name="name" value="<%= name%>">
-<input type="hidden" name="address" value="<%=address%>">
-<input type="hidden" name="tel" value="<%=tel%>">
-<input type="hidden" name="categoryid" value="<%=categoryid%>">
- <ul>
-  <li style="list-style: none; display: inline-block;"><input  formaction="http://localhost:8080/個人情報管理表/AddCommitBL" type="submit" name="send" value="登録" style="width:100px;height:25px"></li>
-  <li style="list-style: none; display: inline-block; padding-left:10px;"><input formaction="http://localhost:8080/個人情報管理表/Add.jsp" type="submit" name="send" value="戻る" style="width:100px;height:25px"></li>
- </ul>
-</form>
+		<input type="hidden" name="name" value="<%=name%>"> <input
+			type="hidden" name="address" value="<%=address%>"> <input
+			type="hidden" name="tel" value="<%=tel%>"> <input
+			type="hidden" name="categoryid" value="<%=categoryid%>">
+		<ul>
+			<li style="list-style: none; display: inline-block;"><input
+				formaction="http://localhost:8080/個人情報管理表/AddCommitBL" type="submit"
+				name="send" value="登録" style="width: 100px; height: 25px"></li>
+			<li
+				style="list-style: none; display: inline-block; padding-left: 10px;"><input
+				formaction="http://localhost:8080/個人情報管理表/Add.jsp" type="submit"
+				name="send" value="戻る" style="width: 100px; height: 25px"></li>
+		</ul>
+	</form>
 </body>
 </html>

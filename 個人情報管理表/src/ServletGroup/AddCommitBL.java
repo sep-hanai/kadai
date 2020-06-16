@@ -65,11 +65,11 @@ public class AddCommitBL extends HttpServlet {
 		request.setAttribute("categoryid", categoryid);
 
 		String servername = "localhost";
-		String databasename = "住所録";
+		String databasename = "hanai";
 		String user = "root";
 		String password = "";
 		String serverencoding = "UTF-8";
-		String url = "jdbc:mysql://localhost:3306/住所録?characterEncoding=UTF-8&serverTimezone=JST";
+		String url = "jdbc:mysql://localhost:3306/hanai?characterEncoding=UTF-8&serverTimezone=JST";
 		Connection connect = null;
 		ResultSet result = null;
 		//	    String categoryid = null;
