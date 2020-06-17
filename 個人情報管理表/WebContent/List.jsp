@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="ServletGroup.Common"%>
-<!--<link rel="stylesheet" type="text/css" href="/個人情報管理表/css/sample.css">-->
+<link rel="stylesheet" type="text/css" href="/個人情報管理表/css/sample.css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,19 +36,21 @@
 
 	<!-- 検索欄 -->
 	<form>
+
 		<div style="float: right">
-			<table border="1" style="width: 40px; border-collapse: collapse;">
+			<table style="border-collapse: collapse;">
 				<tr>
-					<td><input style="outline: 0; border: 0px;" type="text"
+					<td style="width: 40px;">住所：</td>
+					<td><input style="border =1: width: 40px;" type="text"
 						name="Serchname"></td>
 				</tr>
 				<tr>
+					<td></td>
 					<td><input
-						style="width: 100%; background: transparent; maxlength =100; outline: 0; border: 0px;"
+						style="width: 100%; background: transparent; maxlength =100; border =1: width: 40px;"
 						type="submit" value="検索"></td>
 				</tr>
 			</table>
-		<p style="float: right">住所：</p>
 		</div>
 	</form>
 
@@ -171,31 +173,11 @@
 
 		<Form name=<%=id%>>
 			<tr align="center">
-				<td>
-					<%
-						out.println(id);
-					%>
-				</td>
-				<td>
-					<%
-						out.println(name);
-					%>
-				</td>
-				<td>
-					<%
-						out.println(address);
-					%>
-				</td>
-				<td>
-					<%
-						out.println(tel);
-					%>
-				</td>
-				<td>
-					<%
-						out.println(categoryname);
-					%>
-				</td>
+				<td><%=id%></td>
+				<td><%=name%></td>
+				<div  class=address><td><%=address%></td></div>
+				<td><%=tel%></td>
+				<td><%=categoryname%></td>
 				<!-- POSTする -->
 				<td><input formaction="http://localhost:8080/個人情報管理表/Edit.jsp"
 					name="edit"
@@ -221,8 +203,8 @@
 
 	<!-- 新規登録 -->
 	<form method="POST" action="/個人情報管理表/Add.jsp">
-			<input formaction="http://localhost:8080/個人情報管理表/Add.jsp"
-				type="submit" value="新規登録" style="width: 100px; height: 25px">
+		<input formaction="http://localhost:8080/個人情報管理表/Add.jsp"
+			type="submit" value="新規登録" style="width: 100px; height: 25px">
 	</form>
 </body>
 </html>
