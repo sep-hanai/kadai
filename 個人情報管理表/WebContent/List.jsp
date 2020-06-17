@@ -2,14 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="ServletGroup.Common"%>
-<link rel="stylesheet" type="text/css" href="/個人情報管理表/css/sample.css">
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
 <title>Insert title here</title>
-
+<link rel="stylesheet" type="text/css" href="/個人情報管理表/css/sample.css">
 <!--スポンシブデザイン-->
 
 </head>
@@ -175,7 +175,14 @@
 			<tr align="center">
 				<td><%=id%></td>
 				<td><%=name%></td>
-				<div  class=address><td><%=address%></td></div>
+
+				<%
+					if (address.length() > 15) {
+						%><p class="all"><%=address%></p><%
+							 address = (address.substring(0, 15)) + "…";
+						}
+				%>
+				<td class="address"><%=address%></td>
 				<td><%=tel%></td>
 				<td><%=categoryname%></td>
 				<!-- POSTする -->
