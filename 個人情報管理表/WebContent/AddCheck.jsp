@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.ResultSet"%>
+<%@ page import="ServletGroup.Common"%>
+<%@ page import="java.sql.SQLException"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<h4>住所録管理システム：住所録登録</h4>
 	<!-- ここからフォーム画面 -->
 	<form method="POST">
@@ -24,7 +27,21 @@
 		%>
 		<%
 			String categoryid = (String) request.getAttribute("categoryid");
-		%>
+
+		String categoryname="";
+
+//		CommonからgetCategorynameを呼び出し
+		Common cmn = new Common();
+		ResultSet rs = cmn.getCategoryname(categoryid);
+		try {
+			rs.next();
+			categoryname = rs.getString("categoryname");
+			System.out.println(categoryname);
+
+		} catch (SQLException e) {
+			System.out.println("Connection Err. : " + e.toString());
+		}
+%>
 
 		<p>
 			名前：<%
@@ -35,6 +52,7 @@
 			電話番号：<%
 			out.println(tel);
 		%><br>
+		カテゴリ：<%out.println(categoryname);%>
 		</p>
 
 		<input type="hidden" name="name" value="<%=name%>"> <input

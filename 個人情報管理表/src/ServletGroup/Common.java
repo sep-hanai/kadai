@@ -13,22 +13,26 @@ public class Common {
 	public String getErr(String name, String address, String tel) {
 		String returnVal = "";
 		if (name.length() > 20) {
-			returnVal += "名前は全角20文字以内で入力してください"+"<BR>";
-		}if (name.length() == 0) {
-			returnVal += "名前は必須項目です"+"<BR>";
-		}if (address.length() > 40) {
-			returnVal += "住所は全角40文字以内で入力してください"+"<BR>";
-		}if (address.length() == 0) {
-			returnVal += "住所は必須項目です"+"<BR>";
-		}if (tel.matches(".*^0[0-9]{2}-[0-9]{4}-[0-9]{4}.*") != true
+			returnVal += "名前は全角20文字以内で入力してください" + "<BR>";
+		}
+		if (name.length() == 0) {
+			returnVal += "名前は必須項目です" + "<BR>";
+		}
+		if (address.length() > 40) {
+			returnVal += "住所は全角40文字以内で入力してください" + "<BR>";
+		}
+		if (address.length() == 0) {
+			returnVal += "住所は必須項目です" + "<BR>";
+		}
+		if (tel == "") {
+		} else if (tel.matches(".*^0[0-9]{2}-[0-9]{4}-[0-9]{4}.*") != true
 				&& tel.matches(".*^0[0-9]-[0-9]{4}-[0-9]{4}.*") != true
 				&& tel.matches(".*^0[0-9]{2}-[0-9]{3}-[0-9]{4}.*") != true) {
-			returnVal += "電話番号は「000-0000-0000」の形式で入力してください"+"<BR>";
+			returnVal += "電話番号は「000-0000-0000」の形式で入力してください" + "<BR>";
 		}
 
 		return returnVal;
 	}
-
 
 	//DB接続
 	public ResultSet getCategoryAll() {

@@ -39,7 +39,7 @@ public class AddBL extends HttpServlet {
 		String address = request.getParameter("address");
 		String tel = request.getParameter("tel");
 		String categoryid = request.getParameter("categoryid");
-		//        System.out.println(name + address + tel);
+
 		//	    エラー文受け取り
 		Common cmn = new Common();
 		String returnVal = "";

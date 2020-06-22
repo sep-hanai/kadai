@@ -45,7 +45,7 @@
 						while (rs.next()) {
 							String categoryid = rs.getString("categoryid");
 							String categoryname2 = rs.getString("categoryname");
-							//System.out.println(categoryid + categoryname);
+
 					%>
 					<option value="<%=categoryid%>">
 						<%

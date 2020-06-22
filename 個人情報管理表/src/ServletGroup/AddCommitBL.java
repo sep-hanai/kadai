@@ -41,19 +41,6 @@ public class AddCommitBL extends HttpServlet {
 		String address = request.getParameter("address");
 		String tel = request.getParameter("tel");
 		String categoryid = request.getParameter("categoryid");
-		//        System.out.println(name + address + tel + categoryid);
-
-		//		CommonからgetCategorynameを呼び出し
-		Common cmn = new Common();
-		ResultSet rs = cmn.getCategoryname(categoryid);
-		try {
-			rs.next();
-			String categoryname = rs.getString("categoryname");
-			System.out.println(categoryname);
-
-		} catch (SQLException e) {
-			System.out.println("Connection Err. : " + e.toString());
-		}
 
 		//		TELのハイフンを抜く、正規表現の置換
 		String tel1 = tel.replaceAll("-", "");

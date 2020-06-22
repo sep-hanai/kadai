@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
 	<%
 		String nowPage = (String) request.getAttribute("nowPage");
 		int listCnt = (int) request.getAttribute("listCnt");
@@ -34,30 +35,28 @@
 			style="width: 100px; height: 25px">
 	</form>
 
-	<!-- 検索欄 -->
-	<form>
 
+	<!-- 住所検索欄 -->
+	<form>
 		<div style="float: right">
 			<table style="border-collapse: collapse;">
 				<tr>
-					<td style="width: 40px;">住所：</td>
-					<td><input style="border =1: width: 40px;" type="text"
-						name="Serchname"></td>
+					<td class="jyusyo">住所：</td>
+					<td class="border"><input
+						style="width: 150px; outline: 0; border: 0px; maxlength: 100;"
+						type="text" name="Serchname"></td>
 				</tr>
 				<tr>
-					<td></td>
-					<td><input
-						style="width: 100%; background: transparent; maxlength =100; border =1: width: 40px;"
+					<td class="jyusyo"></td>
+					<td class="border"><input
+						style="width: 100%; background: transparent; outline: 0; border: 0px;"
 						type="submit" value="検索"></td>
 				</tr>
 			</table>
 		</div>
 	</form>
 
-	<!-- ページネーションのメソッド -->
-	<%
-		//String paging(String nowPage, int maxPage){
-	%>
+<!-- ページネーション -->
 	<ul>
 		<%
 			//nowPageをint型に置換
@@ -80,7 +79,7 @@
 		%>
 
 		<%
-			//ページング
+
 			//nowPageが3以下の場合、1-5を表示
 			if (centerPage <= 3) {
 				for (int Page = 1; Page <= 5; Page++) {
@@ -142,11 +141,10 @@
 			}
 		%>
 	</ul>
-	<%
-		//return
-	%>
+
+
 	<!-- DB表示 -->
-	<table border="1"
+	<table class="table" border="1"
 		style="border-collapse: collapse; margin: 0 auto; width: 90%">
 		<tr align="center" style="background-color: #6699FF;">
 			<!-- 一覧表示 -->
@@ -168,6 +166,7 @@
 				//CommonからgetCategorynameを呼び出し
 				Common cmn = new Common();
 				String tel = cmn.telHyphen(tel1);
+				String addressAll = rs.getString("address");
 		%>
 
 
@@ -177,12 +176,18 @@
 				<td><%=name%></td>
 
 				<%
-					if (address.length() > 15) {
-						%><p class="all"><%=address%></p><%
-							 address = (address.substring(0, 15)) + "…";
-						}
+					if (address.length() > 13) {
+							address = (address.substring(0, 13)) + "…";
 				%>
-				<td class="address"><%=address%></td>
+				<td><div class="address"><%=address%><p class="text"><%=addressAll%></p>
+					</div></td>
+				<%
+					} else {
+				%>
+				<td><%=address%></td>
+				<%
+					}
+				%>
 				<td><%=tel%></td>
 				<td><%=categoryname%></td>
 				<!-- POSTする -->
@@ -206,6 +211,90 @@
 		%>
 
 	</table>
+
+	<!-- ページネーション -->
+	<ul>
+		<%
+
+			//最初のページ、一つ前のページへ
+			if (centerPage == 1) {
+		%>
+		<li style="display: inline;">&lt;&lt;</li>
+		<li style="display: inline;">&lt;</li>
+		<%
+			} else {
+		%>
+		<li style="display: inline;"><a
+			href="http://localhost:8080/個人情報管理表/ListBL?Page=1">&lt;&lt;</a></li>
+		<li style="display: inline;"><a
+			href="ListBL?Page=<%=centerPage - 1%>">&lt;</a></li>
+		<%
+			}
+		%>
+
+		<%
+
+			//nowPageが3以下の場合、1-5を表示
+			if (centerPage <= 3) {
+				for (int Page = 1; Page <= 5; Page++) {
+
+					//現在ページの不非活性化
+					if (centerPage == Page) {
+		%>
+		<li style="display: inline;"><%=centerPage%></li>
+		<%
+			} else {
+		%>
+		<li style="display: inline;"><a href="ListBL?Page=<%=Page%>"><%=Page%></a></li>
+		<%
+			}
+				}
+				//nowPageがmaxPage-2より大きい場合、maxPage-4を表示
+			} else if (centerPage > (maxPage - 2)) {
+				for (int Page = (maxPage - 4); Page <= maxPage; Page++) {
+
+					//現在ページの不非活性化
+					if (centerPage == Page) {
+		%><li style="display: inline;"><%=centerPage%></li>
+		<%
+			} else {
+		%>
+		<li style="display: inline;"><a href="ListBL?Page=<%=Page%>"><%=Page%></a></li>
+		<%
+			}
+				}
+				//それ以外の場合、nowPageを中心に+-2ページを表示
+			} else {
+				for (int Page = (centerPage - 2); Page <= (centerPage + 2); Page++) {
+
+					//現在ページの不非活性化
+					if (centerPage == Page) {
+		%><li style="display: inline;"><%=centerPage%></li>
+		<%
+			} else {
+		%>
+		<li style="display: inline;"><a href="ListBL?Page=<%=Page%>"><%=Page%></a></li>
+		<%
+			}
+				}
+			}
+
+			//最後のページ、最後から一つ前のページへ
+			if (centerPage == maxPage) {
+		%>
+		<li style="display: inline;">&gt;</li>
+		<li style="display: inline;">&gt;&gt;</li>
+		<%
+			} else {
+		%>
+		<li style="display: inline;"><a
+			href="ListBL?Page=<%=centerPage + 1%>">&gt;</a></li>
+		<li style="display: inline;"><a
+			href="http://localhost:8080/個人情報管理表/ListBL?Page=<%=maxPage%>">&gt;&gt;</a></li>
+		<%
+			}
+		%>
+	</ul>
 
 
 	<!-- 新規登録 -->
