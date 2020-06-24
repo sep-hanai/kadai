@@ -25,9 +25,10 @@
 		<input type="hidden" name="id" value="<%=id%>">
 		<ul>
 			<li style="list-style: none;"><label for="1">名前＊：</label><input
-				type="text" name="name" id="1" value="<%=name%>"></li>
+				style="width: 350px;" type="text" name="name" id="1"
+				value="<%=name%>"></li>
 			<li style="list-style: none;"><label for="2">住所＊：</label><input
-				style="width: 300px;" type="text" name="address" id="2"
+				style="width: 500px;" type="text" name="address" id="2"
 				value="<%=address%>"></li>
 			<li style="list-style: none;"><label for="3">電話番号：</label><input
 				type="text" name="tel" id="3" value="<%=tel%>"></li>
@@ -45,7 +46,6 @@
 						while (rs.next()) {
 							String categoryid = rs.getString("categoryid");
 							String categoryname2 = rs.getString("categoryname");
-
 					%>
 					<option value="<%=categoryid%>">
 						<%
@@ -58,12 +58,12 @@
 			</select></li>
 
 			<li style="list-style: none; display: inline-block;"><input
-				formaction="http://localhost:8080/./EditBL" type="submit"
-				name="send" value="確認" style="width: 100px; height: 25px"></li>
+				formaction="./EditBL" type="submit" name="send" value="確認"
+				style="width: 100px; height: 25px"></li>
 			<li
 				style="list-style: none; display: inline-block; padding-left: 10px;"><input
-				formaction="http://localhost:8080/./ListBL" type="submit"
-				name="send" value="戻る" style="width: 100px; height: 25px"></li>
+				formaction="./ListBL" type="submit" name="send" value="戻る"
+				style="width: 100px; height: 25px"></li>
 		</ul>
 	</form>
 

@@ -29,8 +29,8 @@
 
 	<!-- ここからフォーム画面 -->
 	<!-- 新規登録 -->
-	<form>
-		<input formaction="http://localhost:8080/./Add.jsp"
+	<form method="POST">
+		<input formaction="./Add.jsp"
 			type="submit" name="send" value="新規登録"
 			style="width: 100px; height: 25px">
 	</form>
@@ -41,15 +41,13 @@
 		<div style="float: right">
 			<table style="border-collapse: collapse;">
 				<tr>
-					<td class="jyusyo">住所：</td>
-					<td class="border"><input
-						style="width: 150px; outline: 0; border: 0px; maxlength: 100;"
-						type="text" name="Serchname"></td>
+				<td style="width:40px;">住所</td>
+				<td><input style="border=1: width:40px;" type="text" name="Serchname"></td>
 				</tr>
 				<tr>
-					<td class="jyusyo"></td>
-					<td class="border"><input
-						style="width: 100%; background: transparent; outline: 0; border: 0px;"
+					<td></td>
+					<td><input
+						style="width: 100%; background: transparent; maxlength=100; border=1: width:40px;"
 						type="submit" value="検索"></td>
 				</tr>
 			</table>
@@ -71,7 +69,7 @@
 			} else {
 		%>
 		<li style="display: inline;"><a
-			href="http://localhost:8080/./ListBL?Page=1">&lt;&lt;</a></li>
+			href="./ListBL?Page=1">&lt;&lt;</a></li>
 		<li style="display: inline;"><a
 			href="ListBL?Page=<%=centerPage - 1%>">&lt;</a></li>
 		<%
@@ -136,7 +134,7 @@
 		<li style="display: inline;"><a
 			href="ListBL?Page=<%=centerPage + 1%>">&gt;</a></li>
 		<li style="display: inline;"><a
-			href="http://localhost:8080/./ListBL?Page=<%=maxPage%>">&gt;&gt;</a></li>
+			href="./ListBL?Page=<%=maxPage%>">&gt;&gt;</a></li>
 		<%
 			}
 		%>
@@ -191,18 +189,18 @@
 				<td><%=tel%></td>
 				<td><%=categoryname%></td>
 				<!-- POSTする -->
-				<td><input formaction="http://localhost:8080/./Edit.jsp"
+				<td><input formaction="./Edit.jsp"
 					name="edit"
 					style="width: 100%; background-color: #ffdab9; maxlength =100; outline: 0; border: 0px;"
 					type="submit" value="編集"></td>
 				<td><input
-					formaction="http://localhost:8080/./Delete.jsp" name="delete"
+					formaction="./Delete.jsp" name="delete"
 					style="width: 100%; background-color: #87cefa; maxlength =100; outline: 0; border: 0px;"
 					type="submit" value="削除"></td>
 			</tr>
 			<input type="hidden" name="id" value="<%=id%>"> <input
 				type="hidden" name="name" value="<%=name%>"> <input
-				type="hidden" name="address" value="<%=address%>"> <input
+				type="hidden" name="address" value="<%=addressAll%>"> <input
 				type="hidden" name="tel" value="<%=tel%>"> <input
 				type="hidden" name="categoryname" value="<%=categoryname%>">
 		</form>
@@ -225,7 +223,7 @@
 			} else {
 		%>
 		<li style="display: inline;"><a
-			href="http://localhost:8080/./ListBL?Page=1">&lt;&lt;</a></li>
+			href="./ListBL?Page=1">&lt;&lt;</a></li>
 		<li style="display: inline;"><a
 			href="ListBL?Page=<%=centerPage - 1%>">&lt;</a></li>
 		<%
@@ -290,7 +288,7 @@
 		<li style="display: inline;"><a
 			href="ListBL?Page=<%=centerPage + 1%>">&gt;</a></li>
 		<li style="display: inline;"><a
-			href="http://localhost:8080/./ListBL?Page=<%=maxPage%>">&gt;&gt;</a></li>
+			href="./ListBL?Page=<%=maxPage%>">&gt;&gt;</a></li>
 		<%
 			}
 		%>
@@ -298,8 +296,8 @@
 
 
 	<!-- 新規登録 -->
-	<form method="POST" action="/./Add.jsp">
-		<input formaction="http://localhost:8080/./Add.jsp"
+	<form method="POST">
+		<input formaction="./Add.jsp"
 			type="submit" value="新規登録" style="width: 100px; height: 25px">
 	</form>
 </body>
