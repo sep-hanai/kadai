@@ -29,12 +29,12 @@
 		<input type="hidden" name="id" value="<%=id%>">
 		<ul>
 			<li style="list-style: none; display: inline-block;"><input
-				formaction="http://localhost:8080/個人情報管理表/DeleteCommitBL"
+				formaction="http://localhost:8080/./DeleteCommitBL"
 				type="submit" name="send" value="OK"
 				style="width: 100px; height: 25px"></li>
 			<li
 				style="list-style: none; display: inline-block; padding-left: 10px;"><input
-				formaction="http://localhost:8080/個人情報管理表/ListBL" type="submit"
+				formaction="http://localhost:8080/./ListBL" type="submit"
 				name="send" value="キャンセル" style="width: 100px; height: 25px"></li>
 		</ul>
 	</form>

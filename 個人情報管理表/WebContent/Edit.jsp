@@ -58,11 +58,11 @@
 			</select></li>
 
 			<li style="list-style: none; display: inline-block;"><input
-				formaction="http://localhost:8080/個人情報管理表/EditBL" type="submit"
+				formaction="http://localhost:8080/./EditBL" type="submit"
 				name="send" value="確認" style="width: 100px; height: 25px"></li>
 			<li
 				style="list-style: none; display: inline-block; padding-left: 10px;"><input
-				formaction="http://localhost:8080/個人情報管理表/ListBL" type="submit"
+				formaction="http://localhost:8080/./ListBL" type="submit"
 				name="send" value="戻る" style="width: 100px; height: 25px"></li>
 		</ul>
 	</form>

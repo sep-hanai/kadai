@@ -30,7 +30,7 @@
 	<!-- ここからフォーム画面 -->
 	<!-- 新規登録 -->
 	<form>
-		<input formaction="http://localhost:8080/個人情報管理表/Add.jsp"
+		<input formaction="http://localhost:8080/./Add.jsp"
 			type="submit" name="send" value="新規登録"
 			style="width: 100px; height: 25px">
 	</form>
@@ -71,7 +71,7 @@
 			} else {
 		%>
 		<li style="display: inline;"><a
-			href="http://localhost:8080/個人情報管理表/ListBL?Page=1">&lt;&lt;</a></li>
+			href="http://localhost:8080/./ListBL?Page=1">&lt;&lt;</a></li>
 		<li style="display: inline;"><a
 			href="ListBL?Page=<%=centerPage - 1%>">&lt;</a></li>
 		<%
@@ -136,7 +136,7 @@
 		<li style="display: inline;"><a
 			href="ListBL?Page=<%=centerPage + 1%>">&gt;</a></li>
 		<li style="display: inline;"><a
-			href="http://localhost:8080/個人情報管理表/ListBL?Page=<%=maxPage%>">&gt;&gt;</a></li>
+			href="http://localhost:8080/./ListBL?Page=<%=maxPage%>">&gt;&gt;</a></li>
 		<%
 			}
 		%>
@@ -191,12 +191,12 @@
 				<td><%=tel%></td>
 				<td><%=categoryname%></td>
 				<!-- POSTする -->
-				<td><input formaction="http://localhost:8080/個人情報管理表/Edit.jsp"
+				<td><input formaction="http://localhost:8080/./Edit.jsp"
 					name="edit"
 					style="width: 100%; background-color: #ffdab9; maxlength =100; outline: 0; border: 0px;"
 					type="submit" value="編集"></td>
 				<td><input
-					formaction="http://localhost:8080/個人情報管理表/Delete.jsp" name="delete"
+					formaction="http://localhost:8080/./Delete.jsp" name="delete"
 					style="width: 100%; background-color: #87cefa; maxlength =100; outline: 0; border: 0px;"
 					type="submit" value="削除"></td>
 			</tr>
@@ -225,7 +225,7 @@
 			} else {
 		%>
 		<li style="display: inline;"><a
-			href="http://localhost:8080/個人情報管理表/ListBL?Page=1">&lt;&lt;</a></li>
+			href="http://localhost:8080/./ListBL?Page=1">&lt;&lt;</a></li>
 		<li style="display: inline;"><a
 			href="ListBL?Page=<%=centerPage - 1%>">&lt;</a></li>
 		<%
@@ -290,7 +290,7 @@
 		<li style="display: inline;"><a
 			href="ListBL?Page=<%=centerPage + 1%>">&gt;</a></li>
 		<li style="display: inline;"><a
-			href="http://localhost:8080/個人情報管理表/ListBL?Page=<%=maxPage%>">&gt;&gt;</a></li>
+			href="http://localhost:8080/./ListBL?Page=<%=maxPage%>">&gt;&gt;</a></li>
 		<%
 			}
 		%>
@@ -298,8 +298,8 @@
 
 
 	<!-- 新規登録 -->
-	<form method="POST" action="/個人情報管理表/Add.jsp">
-		<input formaction="http://localhost:8080/個人情報管理表/Add.jsp"
+	<form method="POST" action="/./Add.jsp">
+		<input formaction="http://localhost:8080/./Add.jsp"
 			type="submit" value="新規登録" style="width: 100px; height: 25px">
 	</form>
 </body>

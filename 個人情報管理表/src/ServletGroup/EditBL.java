@@ -29,7 +29,6 @@ public class EditBL extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("UTF-8");
 
 		//Edit.jspからform受け取り
@@ -38,11 +37,11 @@ public class EditBL extends HttpServlet {
 		String address = request.getParameter("address");
 		String tel = request.getParameter("tel");
 		String categoryid = request.getParameter("categoryid");
-		//        System.out.println(name + address + tel);
-		//	    エラー文受け取り
+
+		//エラー文受け取り
 		Common cmn = new Common();
 		String returnVal = cmn.getErr(name, address, tel);
-		//       ここの（）内は"name"ではない、Addからのname
+		//ここの（）内は"name"ではない、Addからのname
 		if (returnVal == "") {
 			request.setAttribute("id", id);
 			request.setAttribute("name", name);

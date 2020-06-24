@@ -41,7 +41,6 @@
 			System.out.println(categoryname);
 
 		} catch (SQLException e) {
-			System.out.println("Connection Err. : " + e.toString());
 		}
 
 		%>
@@ -66,12 +65,12 @@
 			type="hidden" name="categoryid" value="<%=categoryid%>">
 		<ul>
 			<li style="list-style: none; display: inline-block;"><input
-				formaction="http://localhost:8080/個人情報管理表/EditCommitBL"
+				formaction="http://localhost:8080/./EditCommitBL"
 				type="submit" name="send" value="編集"
 				style="width: 100px; height: 25px"></li>
 			<li
 				style="list-style: none; display: inline-block; padding-left: 10px;"><input
-				formaction="http://localhost:8080/個人情報管理表/ListBL" type="submit"
+				formaction="http://localhost:8080/./ListBL" type="submit"
 				name="send" value="戻る" style="width: 100px; height: 25px"></li>
 		</ul>
 	</form>

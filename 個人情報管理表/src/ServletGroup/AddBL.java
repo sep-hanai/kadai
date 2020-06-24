@@ -40,11 +40,11 @@ public class AddBL extends HttpServlet {
 		String tel = request.getParameter("tel");
 		String categoryid = request.getParameter("categoryid");
 
-		//	    エラー文受け取り
+		//エラー文受け取り
 		Common cmn = new Common();
 		String returnVal = "";
 		returnVal = cmn.getErr(name, address, tel);
-		//       ここの（）内は"name"ではない、Addからのname
+		//ここの（）内は"name"ではない、Addからのname
 		if (returnVal == "") {
 			request.setAttribute("name", name);
 			request.setAttribute("address", address);

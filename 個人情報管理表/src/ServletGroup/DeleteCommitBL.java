@@ -33,24 +33,17 @@ public class DeleteCommitBL extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String id = request.getParameter("id");
-		//		System.out.println(id);
 
-		String servername = "localhost";
-		String databasename = "hanai";
+		String id = request.getParameter("id");
+
 		String user = "root";
 		String password = "";
-		String serverencoding = "UTF-8";
 		String url = "jdbc:mysql://localhost:3306/hanai?characterEncoding=UTF-8&serverTimezone=JST";
 		Connection connect = null;
-
-		//	    String categoryid = null;
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connect = DriverManager.getConnection(url, user, password);
-			System.out.println("UPDATE.Connected....");
 
 			String UpdQuery = "UPDATE jyusyoroku SET delete_flg=1 WHERE id=?";
 			PreparedStatement ps = connect.prepareStatement(UpdQuery);
@@ -58,9 +51,7 @@ public class DeleteCommitBL extends HttpServlet {
 			int num = ps.executeUpdate();
 			connect.commit();
 		} catch (SQLException e) {
-			System.out.println("Connection Failed.DELETE失敗 : " + e.toString());
 		} catch (ClassNotFoundException e) {
-			System.out.println("ドライバを読み込めませんでした" + e);
 		}
 		getServletContext().getRequestDispatcher("/ListBL").forward(request, response);
 	}

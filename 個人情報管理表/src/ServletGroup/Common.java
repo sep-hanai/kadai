@@ -37,11 +37,8 @@ public class Common {
 	//DB接続
 	public ResultSet getCategoryAll() {
 		//接続準備
-		String servername = "localhost";
-		String databasename = "hanai";
 		String user = "root";
 		String password = "";
-		String serverencoding = "UTF-8";
 		String url = "jdbc:mysql://localhost:3306/hanai?characterEncoding=UTF-8&serverTimezone=JST";
 		Connection connect = null;
 		Statement stmt = null;
@@ -50,16 +47,12 @@ public class Common {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connect = DriverManager.getConnection(url, user, password);
-			System.out.println("Connected....");
-
 			stmt = connect.createStatement();
 			String getQuery = "SELECT * FROM category ORDER BY categoryid ASC";
 			rs = stmt.executeQuery(getQuery);
 
 		} catch (SQLException e) {
-			System.out.println("Connection Failed. : " + e.toString());
 		} catch (ClassNotFoundException e) {
-			System.out.println("ドライバを読み込めませんでした" + e);
 		}
 
 		return rs;
@@ -68,20 +61,15 @@ public class Common {
 	//DB接続
 	public ResultSet getCategoryname(String categoryid) {
 		//接続準備
-		String servername = "localhost";
-		String databasename = "hanai";
 		String user = "root";
 		String password = "";
-		String serverencoding = "UTF-8";
 		String url = "jdbc:mysql://localhost:3306/hanai?characterEncoding=UTF-8&serverTimezone=JST";
 		Connection connect = null;
 		ResultSet rs = null;
-		//			    String categoryid = null;
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connect = (Connection) DriverManager.getConnection(url, user, password);
-			System.out.println("Connected....");
 
 			String getQuery = "SELECT categoryid, categoryname FROM category WHERE categoryid = ?";
 			PreparedStatement ps = connect.prepareStatement(getQuery);
@@ -89,9 +77,7 @@ public class Common {
 			rs = ps.executeQuery();
 
 		} catch (SQLException e) {
-			System.out.println("Connection Failed. : " + e.toString());
 		} catch (ClassNotFoundException e) {
-			System.out.println("ドライバを読み込めませんでした" + e);
 		}
 
 		return rs;

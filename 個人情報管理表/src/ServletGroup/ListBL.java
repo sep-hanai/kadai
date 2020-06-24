@@ -39,11 +39,8 @@ public class ListBL extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//接続準備
-		String servername = "localhost";
-		String databasename = "hanai";
 		String user = "root";
 		String password = "";
-		String serverencoding = "UTF-8";
 		String url = "jdbc:mysql://localhost:3306/hanai?characterEncoding=UTF-8&serverTimezone=JST";
 		//変数の宣言
 		Connection connect = null;
@@ -52,8 +49,7 @@ public class ListBL extends HttpServlet {
 		int listCnt = 0;
 		String SelectQuery = null;
 		String CntQuery = null;
-		String SerchName = null;
-		String nowPage="";
+		String nowPage = "";
 
 		String Page = request.getParameter("Page");
 		if (Page == null) {
@@ -67,7 +63,6 @@ public class ListBL extends HttpServlet {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connect = DriverManager.getConnection(url, user, password);
-			System.out.println("ListBL1.Connected....");
 
 			stmt = connect.createStatement();
 			CntQuery = "SELECT COUNT(*) FROM jyusyoroku";
@@ -77,17 +72,10 @@ public class ListBL extends HttpServlet {
 				listCnt = rs.getInt(1);
 
 			} catch (SQLException e) {
-				System.out.println("Connection 総件数取得失敗 : " + e.toString());
 			}
 
-			//			rs.close();
-			//		    stmt.close();
-			//			connect.close();
 		} catch (SQLException e) {
-			System.out.println("Connection Failed. : " + e.toString());
 		} catch (ClassNotFoundException e) {
-			System.out.println("ドライバを読み込めませんでした" + e);
-
 		}
 
 		String Serchname = request.getParameter("Serchname");
@@ -96,24 +84,19 @@ public class ListBL extends HttpServlet {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				connect = DriverManager.getConnection(url, user, password);
-				System.out.println("ListBL2.Connected....");
-
 				SelectQuery = "SELECT id, name, address, tel, categoryname FROM jyusyoroku JOIN category ON jyusyoroku.categoryid = category.categoryid WHERE delete_flg = '0' LIMIT 10 OFFSET ?";
 				PreparedStatement ps = connect.prepareStatement(SelectQuery);
 				ps.setInt(1, limitSta);
 				rs = ps.executeQuery();
 
 			} catch (SQLException e) {
-				System.out.println("Connection SelectQuery失敗SelectQuery.null.ver : " + e.toString());
 			} catch (ClassNotFoundException e) {
-				System.out.println("ドライバを読み込めませんでした" + e);
 			}
 		} else {
 			request.setAttribute("SerchName", Serchname);
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				connect = DriverManager.getConnection(url, user, password);
-				System.out.println("ListBL2else.Connected....");
 
 				SelectQuery = "SELECT id, name, address, tel, categoryname FROM jyusyoroku JOIN category "
 						+ "ON jyusyoroku.categoryid = category.categoryid WHERE delete_flg = '0' AND address LIKE ? LIMIT ?, 10";
@@ -123,9 +106,7 @@ public class ListBL extends HttpServlet {
 				rs = ps.executeQuery();
 
 			} catch (SQLException e) {
-				System.out.println("Connection SelectQuery失敗noNull.ver : " + e.toString());
 			} catch (ClassNotFoundException e) {
-				System.out.println("ドライバを読み込めませんでした" + e);
 			}
 		}
 		request.setAttribute("listCnt", listCnt);
@@ -134,8 +115,6 @@ public class ListBL extends HttpServlet {
 		getServletContext().getRequestDispatcher("/List.jsp").forward(request, response);
 
 	}
-	//下の一文、いるのか保留
-	//response.getWriter().append("Served at: ").append(request.getContextPath());
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
