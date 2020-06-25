@@ -16,14 +16,13 @@
 
 <body>
 
-	<%
+	<%	ResultSet rs = (ResultSet) request.getAttribute("ResultSet");
 		String nowPage = (String) request.getAttribute("nowPage");
 		int listCnt = (int) request.getAttribute("listCnt");
 		int maxPage = (listCnt / 10);
 		if (listCnt % 10 != 0) {
 			maxPage++;
 		}
-		ResultSet rs = (ResultSet) request.getAttribute("Result");
 	%>
 	<h4>住所録管理システム：住所録一覧</h4>
 

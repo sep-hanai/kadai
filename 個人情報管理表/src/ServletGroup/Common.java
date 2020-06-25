@@ -13,16 +13,16 @@ public class Common {
 	public String getErr(String name, String address, String tel) {
 		String returnVal = "";
 
-		if (name.getBytes("Shift-JIS").length > 40) {
+		if (name.length() > 40) {
 			returnVal += "名前は全角20文字以内で入力してください" + "<BR>";
 		}
-		if (name.getBytes().length == 0) {
+		if (name.length() == 0) {
 			returnVal += "名前は必須項目です" + "<BR>";
 		}
-		if (address.getBytes().length > 20) {
+		if (address.length() > 20) {
 			returnVal += "住所は全角40文字以内で入力してください" + "<BR>";
 		}
-		if (address.getBytes().length == 0) {
+		if (address.length() == 0) {
 			returnVal += "住所は必須項目です" + "<BR>";
 		}
 		if (tel == "") {
