@@ -27,7 +27,6 @@
 					<%
 						Common cmn = new Common();
 						ResultSet rs = cmn.getCategoryAll();
-
 						while (rs.next()) {
 							String categoryid = rs.getString("categoryid");
 							String categoryname = rs.getString("categoryname");
@@ -43,11 +42,11 @@
 			</select></li>
 
 			<li style="list-style: none; display: inline-block;"><input
-				formaction="http://localhost:8080/./AddBL" type="submit"
+				formaction="./AddBL" type="submit"
 				name="send" value="確認" style="width: 100px; height: 25px"></li>
 			<li
 				style="list-style: none; display: inline-block; padding-left: 10px;"><input
-				formaction="http://localhost:8080/./ListBL" type="submit"
+				formaction="./ListBL" type="submit"
 				name="send" value="戻る" style="width: 100px; height: 25px"></li>
 		</ul>
 	</form>
@@ -58,7 +57,6 @@
 	%>
 	<%
 		if (returnVal != null) {
-
 	%>
 	<p>エラーメッセージ</p>
 	<div
