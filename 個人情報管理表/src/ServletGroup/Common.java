@@ -1,5 +1,6 @@
 package ServletGroup;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,23 +14,28 @@ public class Common {
 	public String getErr(String name, String address, String tel) {
 		String returnVal = "";
 
-		if (name.length() > 40) {
-			returnVal += "名前は全角20文字以内で入力してください" + "<BR>";
-		}
-		if (name.length() == 0) {
-			returnVal += "名前は必須項目です" + "<BR>";
-		}
-		if (address.length() > 20) {
-			returnVal += "住所は全角40文字以内で入力してください" + "<BR>";
-		}
-		if (address.length() == 0) {
-			returnVal += "住所は必須項目です" + "<BR>";
-		}
-		if (tel == "") {
-		} else if (tel.matches(".*^0[0-9]{2}-[0-9]{4}-[0-9]{4}.*") != true
-				&& tel.matches(".*^0[0-9]-[0-9]{4}-[0-9]{4}.*") != true
-				&& tel.matches(".*^0[0-9]{2}-[0-9]{3}-[0-9]{4}.*") != true) {
-			returnVal += "電話番号は「000-0000-0000」の形式で入力してください" + "<BR>";
+		try {
+			if (name.getBytes("Shift-JIS").length > 40) {
+				returnVal += "名前は全角20文字以内で入力してください" + "<BR>";
+			}
+			if (name.getBytes().length == 0) {
+				returnVal += "名前は必須項目です" + "<BR>";
+			}
+			if (address.getBytes().length > 20) {
+				returnVal += "住所は全角40文字以内で入力してください" + "<BR>";
+			}
+			if (address.getBytes().length == 0) {
+				returnVal += "住所は必須項目です" + "<BR>";
+			}
+			if (tel == "") {
+			} else if (tel.matches(".*^0[0-9]{2}-[0-9]{4}-[0-9]{4}.*") != true
+					&& tel.matches(".*^0[0-9]-[0-9]{4}-[0-9]{4}.*") != true
+					&& tel.matches(".*^0[0-9]{2}-[0-9]{3}-[0-9]{4}.*") != true) {
+				returnVal += "電話番号は「000-0000-0000」の形式で入力してください" + "<BR>";
+			}
+		} catch (UnsupportedEncodingException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
 		}
 
 		return returnVal;
