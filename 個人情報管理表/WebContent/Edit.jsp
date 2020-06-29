@@ -19,8 +19,9 @@
 		String tel = request.getParameter("tel");
 		String categoryname = request.getParameter("categoryname");
 		String errmsg = request.getParameter("errmsg");
+		//EditBLから来た時用
+		String categoryid1 = request.getParameter("categoryid");
 	%>
-
 	<form>
 		<input type="hidden" name="id" value="<%=id%>">
 		<ul>
@@ -36,9 +37,6 @@
 				name="categoryid" id="4">
 
 					<!-- ドロップダウン -->
-					<!-- 初期値 -->
-					<option selected><%=categoryname%></option>
-
 					<!-- CommonのgetCategoryAllを呼び出す -->
 					<%
 						Common cmn = new Common();
@@ -46,13 +44,34 @@
 						while (rs.next()) {
 							String categoryid = rs.getString("categoryid");
 							String categoryname2 = rs.getString("categoryname");
+							//初期値の判定
+							//EditBLから戻ってきたとき（＝エラーがあったとき）
+							if (categoryname == null) {
+								if (categoryid1.equals(categoryid)) {
+					%>
+					<option selected value="<%=categoryid%>"><%=categoryid + categoryname2%></option>
+					<%
+						} else {
 					%>
 					<option value="<%=categoryid%>">
-						<%
-							out.println(categoryid + categoryname2);
-						%>
+						<%=categoryid + categoryname2%>
 					</option>
 					<%
+						}
+							} else {
+								//List.jspから来た時
+								if (categoryname.equals(categoryname2)) {
+					%>
+					<option selected value="<%=categoryid%>"><%=categoryid + categoryname2%></option>
+					<%
+						} else {
+					%>
+					<option value="<%=categoryid%>">
+						<%=categoryid + categoryname2%>
+					</option>
+					<%
+						}
+							}
 						}
 					%>
 			</select></li>
