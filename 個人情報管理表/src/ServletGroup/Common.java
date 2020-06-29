@@ -15,22 +15,22 @@ public class Common {
 		String returnVal = "";
 
 		try {
-			if (name.getBytes("Shift-JIS").length > 40) {
+			if (name.getBytes("Shift_JIS").length > 40) {
 				returnVal += "名前は全角20文字以内で入力してください" + "<BR>";
 			}
-			if (name.getBytes().length == 0) {
+			if (name.getBytes("Shift_JIS").length == 0) {
 				returnVal += "名前は必須項目です" + "<BR>";
 			}
-			if (address.getBytes().length > 20) {
+			if (address.getBytes("Shift_JIS").length > 80) {
 				returnVal += "住所は全角40文字以内で入力してください" + "<BR>";
 			}
-			if (address.getBytes().length == 0) {
+			if (address.getBytes("Shift_JIS").length == 0) {
 				returnVal += "住所は必須項目です" + "<BR>";
 			}
 			if (tel == "") {
-			} else if (tel.matches(".*^0[0-9]{2}-[0-9]{4}-[0-9]{4}.*") != true
-					&& tel.matches(".*^0[0-9]-[0-9]{4}-[0-9]{4}.*") != true
-					&& tel.matches(".*^0[0-9]{2}-[0-9]{3}-[0-9]{4}.*") != true) {
+			} else if (tel.matches(".*^0[0-9]{2}-[0-9]{4}-[0-9]{4}.*") != true) {
+					//&& tel.matches(".*^0[0-9]-[0-9]{4}-[0-9]{4}.*") != true
+					//&& tel.matches(".*^0[0-9]{2}-[0-9]{3}-[0-9]{4}.*") != true) {
 				returnVal += "電話番号は「000-0000-0000」の形式で入力してください" + "<BR>";
 			}
 		} catch (UnsupportedEncodingException e) {
