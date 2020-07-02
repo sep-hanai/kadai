@@ -27,11 +27,10 @@ public class Common {
 			if (address.getBytes("Shift_JIS").length == 0) {
 				returnVal += "住所は必須項目です" + "<BR>";
 			}
+			//電話番号、文字数制限
+			int t = tel.getBytes("Shift_JIS").length;
 			if (tel == "") {
-			} else if (tel.matches(".*^0[0-9]{2}-[0-9]{4}-[0-9]{4}.*") != true
-					&& tel.getBytes("Shift_JIS").length > 13) {
-					//&& tel.matches(".*^0[0-9]-[0-9]{4}-[0-9]{4}.*") != true
-					//&& tel.matches(".*^0[0-9]{2}-[0-9]{3}-[0-9]{4}.*") != true) {
+			}else if (tel.matches(".*^0[0-9]{2}-[0-9]{4}-[0-9]{4}.*") != true || 13 < t || (1 <= t && 13 > t)) {
 				returnVal += "電話番号は「000-0000-0000」の形式で入力してください" + "<BR>";
 			}
 		} catch (UnsupportedEncodingException e) {
